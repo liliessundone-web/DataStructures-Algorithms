@@ -1,1 +1,34 @@
+HEAPS
+
+A Heap is a special type of complete binary tree where nodes are arranged based on a specific ordering property. 
+It is widely used in priority-based operations, scheduling, and efficient data retrieval.
+
+There are two main types of heaps:
+Max Heap: The parent node is always greater than or equal to its children.
+Min Heap: The parent node is always smaller than or equal to its children.
+
+// Max Heap using priority_queue
+    priority_queue<int> maxHeap;
+
+//Min Heap using priority_queue
+    priority_queue<int, vector<int>, greater<int>> minHeap;
+
+Applications of Heaps:
+Priority Queues: Efficiently manage tasks with priority (OS scheduling, Dijkstra’s shortest path).
+Heap Sort: Sorting algorithm with O(n log n) complexity.
+Median Finding: Using two heaps to dynamically find the median in a data stream.
+Graph Algorithms: Used in Prim’s and Dijkstra’s algorithms for selecting the minimum edge/vertex.
+Load Balancing & Scheduling: Assigning tasks/jobs to resources efficiently.
+Top-K Problems: Quickly retrieve k largest/smallest elements.
+
+Time Complexity
+Insertion ->	O(log n)
+Deletion ->	O(log n)
+Minimum/Maximum ->	O(1)
+
+Heaps are one of the most powerful tools when you need fast access to the largest or smallest element in a dynamic dataset.
+
+
+
+
 
