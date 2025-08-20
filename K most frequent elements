@@ -1,0 +1,28 @@
+
+// Function to print the k numbers with most occurrences
+
+class Solution {
+  public:
+    vector<int> kMostFrequent(vector<int>& arr, int k) 
+    {
+        // Your code here
+        map <int,int> mpp;
+        for(int i=0;i<arr.size();i++) mpp[arr[i]]++;
+        
+        priority_queue <pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> minn;
+        for(auto it:mpp)
+        {
+            minn.push({it.second,it.first});
+            
+            if(minn.size()>k) minn.pop();
+        }
+        vector<int> ans;
+        while(!minn.empty())
+        {
+            ans.push_back(minn.top());
+            minn.pop();
+        }
+        return ans;
+    }
+};
+
