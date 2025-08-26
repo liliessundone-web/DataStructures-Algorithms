@@ -19,7 +19,7 @@ class Solution {
         vector<int> ans;
         while(!minn.empty())
         {
-            ans.push_back(minn.top());
+            ans.push_back(minn.top().second);
             minn.pop();
         }
         return ans;
