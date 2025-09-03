@@ -1,0 +1,53 @@
+
+class Solution {
+  public:
+    vector<double> getMedian(vector<int> &arr) 
+    {
+        // code here
+        vector<double> ans;
+        
+        //maxheap for left
+        priority_queue<int> left;
+        
+        //minheap for right
+        priority_queue<int, vector<int>, greater<int>> right;
+        
+        
+        for(int i=0;i<arr.size();i++)
+        {
+            if(left.empty() || left.top()>=arr[i])
+            {
+                left.push(arr[i]);
+            }
+            
+            else
+            {
+                right.push(arr[i]);
+            }
+            
+            if(left.size()>right.size()+1)
+            {
+                right.push(left.top());
+                left.pop();
+            }
+            
+            else if(right.size()>left.size())
+            {
+                left.push(right.top());
+                right.pop();
+            }
+            
+            if(i%2==0) ans.push_back(left.top());
+            else 
+            {
+                double val = left.top() + right.top();
+                double val2 = val/2;
+                ans.push_back(val2);
+            }
+        }
+        
+        return ans;
+    }
+};
+
+
