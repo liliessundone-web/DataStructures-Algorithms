@@ -1,0 +1,45 @@
+Time Complexity: O(N log N)
+Space Complexity (General Case): O(K) → since the heap, set, and result store at most K elements.
+Space Complexity (Worst Case): O(N²) → if K = N², meaning we’re asked to find all possible sum pairs.
+
+
+class Solution {
+  public:
+    vector<int> maxCombinations(int N, int K, vector<int> &A, 
+    vector<int> &B) 
+    {
+        // code here
+        sort(A.begin(),A.end(),greater<int>());
+        sort(B.begin(),B.end(),greater<int>());
+        
+        priority_queue <pair<int,pair<int,int>>> pq;
+        set <pair<int,int>> st;
+        pq.push({A[0]+B[0],{0,0}});
+        st.insert({0,0});
+        vector<int> ans;
+        while(K--)
+        {
+            int sum = pq.top().first;
+            int x = pq.top().second.first;
+            int y = pq.top().second.second;
+            ans.push_back(sum);
+            pq.pop();
+            
+            if(st.find({x+1,y})==st.end())
+            {
+                pq.push({A[x+1]+B[y],{x+1,y}});
+                st.insert({x+1,y});
+            }
+            
+            if(st.find({x,y+1})==st.end())
+            {
+                pq.push({A[x]+B[y+1],{x,y+1}});
+                st.insert({x,y+1});
+            }
+            
+            
+        }
+        return ans;
+    }
+};
+
