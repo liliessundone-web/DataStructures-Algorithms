@@ -1,0 +1,56 @@
+
+time complexity: O(N log M)
+space complexity: O(M)
+N = total number of tasks.
+M = number of unique tasks.
+
+
+class Solution {
+  public:
+    int leastInterval(int N, int K, vector<char> &arr) 
+    {
+        // code here
+    //maxheap to store each tsk's frequency
+    priority_queue <int> maxhp;
+    
+    //queue to store instances of each task left and time of their availability so that they
+    // could be pushed to maxhp
+    queue <pair<int,int>> q;
+    
+    unordered_map<char, int> mpp;
+        for (int i = 0; i < N; i++) {
+            mpp[arr[i]]++;
+        }
+    
+    for(auto it:mpp)
+    {
+        maxhp.push(it.second);
+    }
+    
+    int time =0;
+    
+    while (!maxhp.empty() || !q.empty()) {
+            if (!maxhp.empty()) {
+                int fre = maxhp.top(); // Get task with highest frequency
+                maxhp.pop();
+                fre--; // After executing this task, its frequency decreases
+                
+                if (fre > 0) {
+                    q.push({time + K, fre}); // This task can be used again after time + K
+                }
+            }
+
+            // Process tasks in the cooling period queue
+            if (!q.empty() && q.front().first <= time) {
+                maxhp.push(q.front().second); // Push the task back into the max heap
+                q.pop(); // Remove it from the queue as it's now available
+            }
+
+            time++; // Increment time by 1
+    }
+    
+    return time;
+ 
+    }
+};
+
