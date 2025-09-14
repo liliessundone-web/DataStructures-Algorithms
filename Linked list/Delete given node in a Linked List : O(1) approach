@@ -1,0 +1,10 @@
+
+Time Complexity: O(1)
+Space Complexity: O(1)
+
+void deleteNode(node* delNode) 
+{
+    delNode->data = delNode->next->data;
+    delNode->next = delNode->next->next;
+    return;
+}
