@@ -1,5 +1,5 @@
-//T.C. => O(n* log k) where n: number of elements
-//S.C. => O(k)= size of minheap
+Time Complexity: O(n* log k) where n: number of elements
+Space Complexity: O(k)= size of minheap
 
 
 class Solution {
