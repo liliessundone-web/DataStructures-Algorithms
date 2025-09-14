@@ -1,6 +1,5 @@
-
-//User function Template for C++
-
+Time Complexity: O(N*LogK) where N: total number of elements in all arrays
+Space Complexity: O(N)
 
 class Solution
 {
