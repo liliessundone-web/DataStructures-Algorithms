@@ -1,0 +1,50 @@
+
+Time Complexity: O(N)
+Space Complexity: O(1)
+
+
+Node* reverseLinkedList(Node* head) 
+{
+    Node* prev = nullptr;
+    Node* curr = head;
+    Node* next;
+
+    while (curr) 
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+    return prev;
+}
+
+bool isPalindrome(Node* head) 
+{
+
+    if (head == NULL || head->next == NULL)
+        return true; 
+
+    Node* slow = head;
+    Node* fast = head;
+    while (fast->next != NULL && fast->next->next != NULL) 
+    {
+        slow = slow->next;  
+        fast = fast->next->next;  
+    }
+    Node* newHead = reverseLinkedList(slow->next);
+    Node* first = head;  
+    Node* second = newHead; 
+    while (second != NULL) 
+  {
+        if (first->data != second->data) {
+            slow->next = reverseLinkedList(newHead);  
+            return false;
+        }
+        first = first->next; 
+        second = second->next;  
+    }
+    slow->next = reverseLinkedList(newHead);  
+    return true;  
+}
+
