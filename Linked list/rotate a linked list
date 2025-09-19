@@ -1,0 +1,39 @@
+
+Time Complexity: O(length of list) + O(length of list - (length of list%k))
+Space Complexity: O(1)
+
+class Solution 
+{
+  public:
+    Node* rotate(Node* head, int k) 
+{        
+        if(head==NULL || head->next==NULL) return head;
+        
+        Node* temp = head;
+        int len =1;
+        while(temp->next!=NULL)
+        {
+            temp = temp->next;
+            len++;
+        }
+        temp->next = head;
+        
+        k = k%len;
+        if(k==0) 
+        {
+            temp->next = NULL;
+            return head;
+        }
+        k--;
+        Node* node = head;
+        while(k)
+        {
+            node = node->next;
+            k--;
+        }
+        head = node->next;
+        node->next = NULL;
+        return head;
+}
+};
+
