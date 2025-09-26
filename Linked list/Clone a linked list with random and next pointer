@@ -1,0 +1,55 @@
+Time Complexity: O(N)
+Space Complexity: O(N)
+
+
+class Solution {
+  public:
+    Node *cloneLinkedList(Node *head) {
+        // Write your code here
+        
+        // clone a linked list with random and next ptr
+        // 1. create copies of the linked list and insert them in between the existing nodes
+        // 2. join the random nodes
+        // 3. remove the existing linked list
+        // 4. return the head of the cloned linked list
+        
+        if (head == NULL) return NULL;
+        
+        //1
+        Node* temp = head;
+        while(temp!=NULL)
+        {
+            Node* copy = new Node(temp->data);
+            copy->next = temp->next;
+            temp->next = copy;
+            temp = temp->next->next;
+        }
+        
+        //2
+        temp = head;
+        while(temp!=NULL)
+        {
+            if(temp->random == NULL) temp->next->random = NULL;
+            else temp->next->random = temp->random->next;
+            temp = temp->next->next;
+        }
+        
+        //3 
+        Node* h1 = head;
+        Node* h2 = head->next;
+        Node* rt = h2;
+
+        while (h1 && h2) {
+        h1->next = h2->next;
+        h1 = h1->next;
+        if (h1) {
+        h2->next = h1->next;
+        h2 = h2->next;
+        }
+        }
+        
+        //4
+        return rt;
+    }
+};
+
