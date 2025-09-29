@@ -1,4 +1,7 @@
-
+Time Complexity: O(N1+N2)
+N1 = no.of nodes in linked list 1
+N2 = no. of nodes in linked list 2
+Space Complexity: O(1)
 
 class Solution {
   public:
