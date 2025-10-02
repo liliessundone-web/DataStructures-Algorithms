@@ -1,0 +1,48 @@
+
+Time Complexity: O(N)
+Space Complexity: O(1)
+
+class Solution {
+  public:
+    void reorderList(Node* head) 
+    {
+        if(head==NULL || head->next==NULL) return;
+      
+        //find middle of linked list
+        Node* fast = head;
+        Node* slow = head;
+       
+        while(fast->next!=NULL && fast->next->next!=NULL)
+        {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        
+        //Reverse 
+        Node* prev = nullptr;
+        Node* curr = slow->next;
+        while (curr) {
+            Node* nextNode = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nextNode;
+        }
+        slow->next = nullptr;
+
+      //combine 
+        Node* first = head;
+        Node* second = prev;
+        while (second) 
+        {
+            Node* temp1 = first->next;
+            Node* temp2 = second->next;
+
+            first->next = second;
+            second->next = temp1;
+
+            first = temp1;
+            second = temp2;
+        }
+    }
+};
+
